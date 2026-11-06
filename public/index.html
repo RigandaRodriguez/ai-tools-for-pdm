@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Кто выгуливает Бориса</title>
+    <link rel="icon" href="data:,">
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        padding: 48px 20px;
+        color: #23352b;
+        background: #f5f3eb;
+        font-family: system-ui, sans-serif;
+        line-height: 1.6;
+      }
+      main { max-width: 720px; margin: 0 auto; }
+      .company { color: #50624d; }
+      h1 { font-size: clamp(2rem, 6vw, 3rem); line-height: 1.15; }
+      .notice {
+        margin-top: 32px;
+        padding: 24px;
+        background: #fff;
+        border: 1px solid #d4dacd;
+        border-radius: 12px;
+      }
+      .notice h2 { margin-top: 0; }
+      .feeding-name { font-weight: 700; overflow-wrap: anywhere; }
+      .date { font-size: 1.2rem; }
+      .slots { list-style: none; padding: 0; display: grid; gap: 12px; }
+      .slot {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        align-items: center;
+        gap: 8px 24px;
+        padding: 18px 24px;
+        border: 1px solid #b5cbb7;
+        border-left: 5px solid #397348;
+        border-radius: 12px;
+        background: #edf6ec;
+      }
+      .slot--booked { background: #f5e9d9; border-color: #9b6b2d; }
+      .slot-time { font-size: 1.25rem; font-weight: 700; }
+      .slot-status { justify-self: end; }
+      .employee { grid-column: 1 / -1; overflow-wrap: anywhere; }
+      .booking-form, .feeding-form { grid-column: 1 / -1; display: grid; gap: 10px; }
+      input, button { font: inherit; border-radius: 6px; padding: 10px 12px; }
+      input { width: 100%; min-width: 0; border: 1px solid #687c69; background: #fff; }
+      button { border: 0; background: #295e36; color: #fff; cursor: pointer; }
+      button:hover { background: #1c4827; }
+      input:focus-visible, button:focus-visible { outline: 3px solid #356bb5; outline-offset: 3px; }
+      .feedback { padding: 18px; background: #edf6ec; border: 2px solid #397348; border-radius: 8px; overflow-wrap: anywhere; }
+      .feedback--error { background: #fff0e8; border-color: #a34020; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="company">Догяндекс · Учебный проект</p>
+      <h1>Кто выгуливает Бориса</h1>
+      <p>Общая страница для прогулок с нашим офисным псом.</p>
+      <section aria-labelledby="walks-heading">
+        <h2 id="walks-heading">Прогулки сегодня</h2>
+        <p class="date"><time datetime="{{DATE}}">{{DATE_LABEL}}</time> · Москва</p>
+        <p>Выберите свободное время и введите синтетическое ФИО.</p>
+        {{MESSAGE}}
+        <ul class="slots">{{SLOTS}}</ul>
+      </section>
+      <section class="notice" id="feeding" aria-labelledby="feeding-heading">
+        <h2 id="feeding-heading">Последнее кормление</h2>
+        {{FEEDING_MESSAGE}}
+        <div class="feeding-details">{{FEEDING}}</div>
+        <form class="feeding-form" action="/feed#feeding" method="post">
+          <label for="feeding-name">ФИО сотрудника, который покормил Бориса</label>
+          <input id="feeding-name" name="employee_name" type="text" required placeholder="Илья Примеров" autocomplete="off">
+          <button type="submit">Отметить кормление</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
